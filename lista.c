@@ -22,7 +22,7 @@ Nodo_ListaD * creaNodo(){
 	nld->ant=NULL;
 	return nld;
 }
-int es_VaciaLista(LISTA l){
+int esVaciaLista(LISTA l){
 	if(l==NULL)
 		return TRUE;
 	return FALSE;
@@ -31,7 +31,7 @@ int es_VaciaLista(LISTA l){
 void mostrar(LISTA l){
 	Nodo_ListaD * aux;
 	int pos=0;
-	if(es_VaciaLista(l)==TRUE){
+	if(esVaciaLista(l)==TRUE){
 		manejaError(0);//lista vacia.
 		//exit(0);
 	}
@@ -51,7 +51,7 @@ LISTA insertar(LISTA l, int e){
 	aux=l;
 	nld=creaNodo();
 
-	if(es_VaciaLista(l)==TRUE){
+	if(esVaciaLista(l)==TRUE){
 		nld->dato=e;
 		l=nld;
 		return l;
@@ -75,7 +75,7 @@ LISTA eliminar(LISTA l, int e){
 	aux=l;
 	aux2=l;
 
-	if(es_VaciaLista(l)==TRUE){
+	if(esVaciaLista(l)==TRUE){
 		manejaError(0);//lista vacia.
 		//exit(0);
 	}
@@ -108,7 +108,7 @@ int busqueda(LISTA l,int elem)
 	Nodo_ListaD * aux;
 	aux=l;
 	int pos=0;
-	if(es_VaciaLista(l)==TRUE){
+	if(esVaciaLista(l)==TRUE){
 		manejaError(0);// lista vacia
 		//exit(0);
 	}

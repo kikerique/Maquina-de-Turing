@@ -15,7 +15,7 @@ typedef Nodo_ListaD * LISTA;
 
 LISTA creaLista();
 Nodo_ListaD * creaNodo();
-int es_VaciaLista(LISTA );
+int esVaciaLista(LISTA );
 LISTA insertar (LISTA , int);
 int busqueda (LISTA, int);
 LISTA eliminar(LISTA, int);

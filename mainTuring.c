@@ -30,13 +30,13 @@ void pasaLista(LISTA list1, LISTA list2, char* cadena)
 	while(cadena[i]!='#')
 	{
 		numero=(int)cadena[i] - (int)'0';
-		if(numero=>0 || numero<=1)
+		if(numero!=0 && numero!=1)
 		{
-			list1=insertar(list1,numero);//agregar a list 1
-			i++;
-		}else{
 			printf("\nNumero rechazado\n");
 			break;
+		}else{
+			list1=insertar(list1,numero);//agregar a list 1
+			i++;
 		}
 		
 	}
@@ -44,7 +44,7 @@ void pasaLista(LISTA list1, LISTA list2, char* cadena)
 	while(cadena[j]!='\0')
 	{
 		numero=(int)cadena[i] - (int)'0';
-		if(numero=>0 || numero<=1)
+		if(numero>=0 || numero<=1)
 		{
 			list2=insertar(list2,numero);//agregar a list 1
 			i++;
@@ -119,6 +119,7 @@ void hazMultiplicacion(LISTA list1,LISTA list2)
 		intento++;
 		restante=0;
 	}
+	mostrar(resultado);
 	
 }
 void enviaAlFinal(LISTA list)
