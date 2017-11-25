@@ -44,13 +44,14 @@ void pasaLista(LISTA list1, LISTA list2, char* cadena)
 	while(cadena[j]!='\0')
 	{
 		numero=(int)cadena[i] - (int)'0';
-		if(numero>=0 || numero<=1)
+		if(numero!=0 && numero!=1)
 		{
-			list2=insertar(list2,numero);//agregar a list 1
-			i++;
-		}else{
 			printf("\nNumero rechazado\n");
 			break;
+			
+		}else{
+			list2=insertar(list2,numero);//agregar a list 1
+			i++;
 		}
 	}
 }
@@ -78,7 +79,7 @@ void hazMultiplicacion(LISTA list1,LISTA list2)
 							aux->dato=0;
 							if((aux->ant)!=NULL)
 							{
-								(aux->ant)->dato=(resultado,1);
+								(aux->ant)->dato=1;
 								
 							}else{
 								aux=insertarInicio(resultado,multiplicacion+restante);//el byte de carry se inserta al inicio de resultado
@@ -91,7 +92,7 @@ void hazMultiplicacion(LISTA list1,LISTA list2)
 								aux->dato=0;
 								if((aux->ant)!=NULL)
 								{	
-									(aux->ant)->dato=(resultado,1);
+									(aux->ant)->dato=1;
 									
 								}else{
 									aux=insertarInicio(resultado,multiplicacion+restante);//el byte de carry se inserta al inicio de resultado
