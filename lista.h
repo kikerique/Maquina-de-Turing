@@ -17,6 +17,7 @@ LISTA creaLista();
 Nodo_ListaD * creaNodo();
 int esVaciaLista(LISTA );
 LISTA insertar (LISTA , int);
+LISTA insertarInicio(LISTA, int);
 int busqueda (LISTA, int);
 LISTA eliminar(LISTA, int);
 void mostrar(LISTA );

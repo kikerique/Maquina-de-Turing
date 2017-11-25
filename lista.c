@@ -68,6 +68,16 @@ LISTA insertar(LISTA l, int e){
 
 	return l;
 }
+LISTA insertarInicio(LISTA list, int e)
+{
+	LISTA inicio= creaNodo();
+	LISTA aux=list;
+	aux->ant=inicio;
+	inicio->sig=aux;
+	inicio->dato=e;
+	aux=inicio;
+	return aux;
+}
 
 LISTA eliminar(LISTA l, int e){
 	Nodo_ListaD * aux;
