@@ -1,0 +1,1 @@
+Falta checar la multiplicacion y agregar el método de ingresarInicio en el TAD lista
