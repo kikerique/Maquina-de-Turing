@@ -4,7 +4,7 @@
 
 void manejaError(int);
 void pideCadena(char*);
-void pasaLista(LISTA,LISTA,char*);//Pasa los numeros de formato a#b a Lista1:a y Lista2:b
+int pasaLista(LISTA*,LISTA*,char*);//Pasa los numeros de formato a#b a Lista1:a y Lista2:b
 void hazMultiplicacion(LISTA,LISTA);
 void enviaAlFinal(LISTA);
 
@@ -14,8 +14,17 @@ int main()
 	LISTA list2=creaLista();
 	char* cadena=(char*)malloc(sizeof(char)*100);
 	pideCadena(cadena);
-	pasaLista(list1,list2,cadena);
-	hazMultiplicacion(list1,list2);
+	if(pasaLista(&list1,&list2,cadena)!=1)
+	{
+		printf("\nNumero rechazado\n");
+		return 0;
+	}else{
+		printf("\nvoy a multiplicar\n");
+		mostrar(list1);
+		mostrar(list2);
+		hazMultiplicacion(list1,list2);
+	}
+	
 	return 0;
 }
 
@@ -24,36 +33,38 @@ void pideCadena(char* cadena)
 	printf("\nBienvenido Usuario ingrese los numeros a multiplicar en formato A#B donde A y B son numeros binarios\n");
 	scanf("%s",cadena);
 }
-void pasaLista(LISTA list1, LISTA list2, char* cadena)
+int pasaLista(LISTA* list1, LISTA* list2, char* cadena)
 {
 	int i=0,j=0,numero=0;
 	while(cadena[i]!='#')
 	{
 		numero=(int)cadena[i] - (int)'0';
-		if(numero!=0 && numero!=1)
+		printf("\nCadena:%c Numero: %i\n",cadena[i], numero );
+		if(numero==0 || numero==1)
 		{
-			printf("\nNumero rechazado\n");
-			break;
+			*list1=insertar(*list1,numero);//agregar a list 1
+			
 		}else{
-			list1=insertar(list1,numero);//agregar a list 1
-			i++;
+			return 0;
 		}
-		
+		i++;
 	}
 	j=i+1;
 	while(cadena[j]!='\0')
 	{
-		numero=(int)cadena[i] - (int)'0';
-		if(numero!=0 && numero!=1)
+		numero=(int)cadena[j] - (int)'0';
+		printf("\nCadena:%c Numero: %i\n",cadena[j], numero );
+		if(numero==0 || numero==1)
 		{
-			printf("\nNumero rechazado\n");
-			break;
+			*list2=insertar(*list2,numero);//agregar a list 2
 			
 		}else{
-			list2=insertar(list2,numero);//agregar a list 1
-			i++;
+			
+			return 0;
 		}
+		j++;
 	}
+	return 1;
 }
 void hazMultiplicacion(LISTA list1,LISTA list2)
 {	
@@ -61,6 +72,8 @@ void hazMultiplicacion(LISTA list1,LISTA list2)
 	int multiplicacion=0,restante=0, intento=0;//el primer intento solo guarda el resultado de multiplicar el ultimo nodo de list1 con todos los nodos de list2
 	enviaAlFinal(aux1);
 	enviaAlFinal(aux2);
+	
+	printf("\nEnviando al final\n");
 	while(esVaciaLista(aux1)!=1)
 	{
 		while(esVaciaLista(aux2)!=1)//la list2 se recorre de izquierda a derecha 
@@ -68,7 +81,7 @@ void hazMultiplicacion(LISTA list1,LISTA list2)
 				if(intento==0)
 				{
 					multiplicacion=(aux1->dato)*(aux2->dato);
-					aux=insertarInicio(resultado,multiplicacion);//los numeros se recorren de derecha a izquierda, por eso el insertar al inicio
+					aux=insertar(resultado,multiplicacion);//los numeros se recorren de derecha a izquierda, por eso el insertar al inicio
 					aux2=aux2->ant;
 				}else{
 					multiplicacion=(aux1->dato)*(aux2->dato);
@@ -125,11 +138,15 @@ void hazMultiplicacion(LISTA list1,LISTA list2)
 }
 void enviaAlFinal(LISTA list)
 {
-	while(esVaciaLista(list)!=1)//envia la lista al final
+	if(list!=NULL)
 	{
-		list=list->sig;
+		while(esVaciaLista(list)!=1)//envia la lista al final
+		{
+			list=list->sig;
+		}
+		list=list->ant;
 	}
-	list=list->ant;
+	
 }
 void manejaError(int e)
 {

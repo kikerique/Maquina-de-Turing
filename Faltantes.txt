@@ -1,1 +1,1 @@
-Falta checar la multiplicacion y agregar el método de ingresarInicio en el TAD lista
+Falta checar la multiplicacion y creo que no agrega a la lista, no se si sea pedo de mi lista o que

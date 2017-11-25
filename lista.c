@@ -70,12 +70,20 @@ LISTA insertar(LISTA l, int e){
 }
 LISTA insertarInicio(LISTA list, int e)
 {
-	LISTA inicio= creaNodo();
+	LISTA inicio;
 	LISTA aux=list;
-	aux->ant=inicio;
-	inicio->sig=aux;
-	inicio->dato=e;
-	aux=inicio;
+	
+	if(list==NULL)
+	{
+		aux=insertar(aux,e);
+	}else{
+		inicio=creaNodo();
+		aux->ant=inicio;
+		inicio->sig=aux;
+		inicio->dato=e;
+		aux=inicio;
+	}
+	
 	return aux;
 }
 
